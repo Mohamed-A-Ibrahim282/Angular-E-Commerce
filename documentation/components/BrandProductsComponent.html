@@ -1,0 +1,1542 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>e-commerce documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">e-commerce documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  BrandProductsComponent</li>
+</ol>
+
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/pages/brand-products/brand-products.component.ts</code>
+</div>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-brand-products</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                        <div>        <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+</div>
+                        <div>        <code><a href="../components/ToastSuccessComponent.html" target="_self" >ToastSuccessComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/ToastErrorComponent.html" target="_self" >ToastErrorComponent</a></code>
+</div>
+                        <div>    <code>SplitPipe</code>
+</div>
+                        <div>    <code>TranslatePipe</code>
+</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./brand-products.component.scss</code></td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./brand-products.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./brand-products.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <p class="comment"><i>No results matching.</i></p>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="https://angular.dev/api/router/RouterLink" target="_blank" >RouterLink</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/ToastSuccessComponent.html" target="_self" >ToastSuccessComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/ToastErrorComponent.html" target="_self" >ToastErrorComponent</a></code>
+                                </li>
+                                <li>
+                                        <code>SplitPipe</code>
+                                </li>
+                                <li>
+                                        <code>TranslatePipe</code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#activatedRoute" >activatedRoute</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#addedToWishlist" >addedToWishlist</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#brandData" >brandData</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#brandId" >brandId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#brandProducts" >brandProducts</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#brandsService" >brandsService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#cartService" >cartService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#errorMessage" >errorMessage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#isLoading" >isLoading</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#platformId" >platformId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#productsService" >productsService</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#removingId" >removingId</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#successMessage" >successMessage</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                <a href="#wishlistItems" >wishlistItems</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#wishlistService" >wishlistService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
+                <tr>
+                    <td class="col-md-3">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                    <td class="col-md-9">
+                        <ul class="index-list">
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#addToCart" >addToCart</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#addToWishlist" >addToWishlist</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#finalProductsList" >finalProductsList</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
+                                <a href="#removeFromWishlist" >removeFromWishlist</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addToCart"></a>
+                    <span class="name">
+                        <span ><b>addToCart</b></span>
+                        <a href="#addToCart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addToCart(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addToWishlist"></a>
+                    <span class="name">
+                        <span ><b>addToWishlist</b></span>
+                        <a href="#addToWishlist"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addToWishlist(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="finalProductsList"></a>
+                    <span class="name">
+                        <span ><b>finalProductsList</b></span>
+                        <a href="#finalProductsList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>finalProductsList()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeFromWishlist"></a>
+                    <span class="name">
+                        <span ><b>removeFromWishlist</b></span>
+                        <a href="#removeFromWishlist"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeFromWishlist(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activatedRoute"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>activatedRoute</b></span>
+                        <a href="#activatedRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addedToWishlist"></a>
+                    <span class="name">
+                        <span ><b>addedToWishlist</b></span>
+                        <a href="#addedToWishlist"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="brandData"></a>
+                    <span class="name">
+                        <span ><b>brandData</b></span>
+                        <a href="#brandData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Category.html" target="_self" >Category</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{} as Category</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="brandId"></a>
+                    <span class="name">
+                        <span ><b>brandId</b></span>
+                        <a href="#brandId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="brandProducts"></a>
+                    <span class="name">
+                        <span ><b>brandProducts</b></span>
+                        <a href="#brandProducts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>IProducts[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="brandsService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>brandsService</b></span>
+                        <a href="#brandsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(BrandsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cartService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>cartService</b></span>
+                        <a href="#cartService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(CartService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLoading"></a>
+                    <span class="name">
+                        <span ><b>isLoading</b></span>
+                        <a href="#isLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="platformId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>platformId</b></span>
+                        <a href="#platformId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PLATFORM_ID)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productsService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>productsService</b></span>
+                        <a href="#productsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ProductsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removingId"></a>
+                    <span class="name">
+                        <span ><b>removingId</b></span>
+                        <a href="#removingId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="successMessage"></a>
+                    <span class="name">
+                        <span ><b>successMessage</b></span>
+                        <a href="#successMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="wishlistItems"></a>
+                    <span class="name">
+                        <span ><b>wishlistItems</b></span>
+                        <a href="#wishlistItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>IProducts[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="wishlistService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>wishlistService</b></span>
+                        <a href="#wishlistService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(WishlistService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/brand-products/brand-products.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { isPlatformBrowser } from &#x27;@angular/common&#x27;;
+import { Component, inject, PLATFORM_ID } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute, RouterLink } from &#x27;@angular/router&#x27;;
+import { TranslatePipe } from &#x27;@ngx-translate/core&#x27;;
+import { catchError, forkJoin, of, switchMap } from &#x27;rxjs&#x27;;
+import { BrandsService } from &#x27;../../core/services/brands/brands.service&#x27;;
+import { CartService } from &#x27;../../core/services/cart/cart.service&#x27;;
+import { ProductsService } from &#x27;../../core/services/products/products.service&#x27;;
+import { WishlistService } from &#x27;../../core/services/wishlist/wishlist.service&#x27;;
+import { ToastErrorComponent } from &#x27;../../shared/components/ui/toast/toast-error/toast-error.component&#x27;;
+import { ToastSuccessComponent } from &#x27;../../shared/components/ui/toast/toast-success/toast-success.component&#x27;;
+import { Category, IProducts } from &#x27;../../shared/interfaces/products/iproducts&#x27;;
+import { SplitPipe } from &#x27;../../shared/pipes/split.pipe&#x27;;
+
+@Component({
+  selector: &#x27;app-brand-products&#x27;,
+  imports: [RouterLink, ToastSuccessComponent, ToastErrorComponent, SplitPipe, TranslatePipe],
+  templateUrl: &#x27;./brand-products.component.html&#x27;,
+  styleUrl: &#x27;./brand-products.component.scss&#x27;
+})
+export class BrandProductsComponent {
+  private readonly brandsService &#x3D; inject(BrandsService)
+  private readonly activatedRoute &#x3D; inject(ActivatedRoute)
+  private readonly productsService &#x3D; inject(ProductsService)
+  private readonly cartService &#x3D; inject(CartService)
+  private readonly wishlistService &#x3D; inject(WishlistService)
+  private readonly platformId &#x3D; inject(PLATFORM_ID)
+
+  brandId: string &#x3D; &#x27;&#x27;;
+  brandData: Category &#x3D; {} as Category;
+  brandProducts: IProducts[] &#x3D; [];
+  isLoading: boolean &#x3D; false;
+  successMessage: string &#x3D; &quot;&quot;;
+  errorMessage: string &#x3D; &quot;&quot;;
+
+  wishlistItems: IProducts[] &#x3D; [];
+  addedToWishlist: boolean &#x3D; false;
+  removingId: string | null &#x3D; null;
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.finalProductsList()
+    }
+  }
+
+  finalProductsList(): void {
+    this.activatedRoute.paramMap.pipe(
+      switchMap(param &#x3D;&gt; {
+        this.brandId &#x3D; param.get(&#x27;id&#x27;)!;
+        return forkJoin({
+          brand: this.brandsService.getSpecificlBrand(this.brandId),
+          products: this.productsService.getAllProducts(),
+          wishlistProducts: this.wishlistService.getLoggedUserWishlist().pipe(catchError(() &#x3D;&gt; of({ data: [] })))
+        });
+      })
+    ).subscribe({
+      next: ({ brand, products, wishlistProducts }) &#x3D;&gt; {
+        const wishlistIds &#x3D; wishlistProducts.data.map((item: IProducts) &#x3D;&gt; item._id)
+        this.brandData &#x3D; brand.data;
+        this.brandProducts &#x3D; products.data.filter(
+          (product: IProducts) &#x3D;&gt; product.brand?._id &#x3D;&#x3D;&#x3D; this.brandId
+        ).map((product: IProducts) &#x3D;&gt; ({
+          ...product,
+          addedToWishlist: wishlistIds.includes(product._id)
+        }));;
+      }
+    });
+  }
+
+  addToCart(id: string): void {
+    this.isLoading &#x3D; true;
+    this.cartService.addProductToCart(id).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.isLoading &#x3D; false;
+        this.successMessage &#x3D; res.message
+        setTimeout(() &#x3D;&gt; {
+          this.successMessage &#x3D; &quot;&quot;
+        }, 1500);
+      },
+      error: (err) &#x3D;&gt; {
+        this.isLoading &#x3D; false;
+        this.errorMessage &#x3D; err.message
+        setTimeout(() &#x3D;&gt; {
+          this.errorMessage &#x3D; &quot;&quot;
+        }, 1500);
+      }
+    })
+  }
+
+  addToWishlist(id: string): void {
+    this.wishlistService.setAddToWishlist(id).subscribe({
+      next: (res) &#x3D;&gt; {
+        this.isLoading &#x3D; false;
+        this.successMessage &#x3D; res.message;
+        this.addedToWishlist &#x3D; true;
+        this.finalProductsList();
+        setTimeout(() &#x3D;&gt; {
+          this.successMessage &#x3D; &quot;&quot;
+        }, 1500);
+      }
+    })
+  }
+
+  removeFromWishlist(id: string): void {
+    this.removingId &#x3D; id;
+    this.wishlistService.setRemoveFromWishlist(id).subscribe({
+      next: () &#x3D;&gt; {
+        this.wishlistItems &#x3D; this.wishlistItems.filter(product &#x3D;&gt; product._id !&#x3D;&#x3D; id);
+        this.removingId &#x3D; null;
+        this.finalProductsList();
+      },
+      error: () &#x3D;&gt; {
+        this.removingId &#x3D; null;
+      }
+    })
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">@if (brandData) {
+&lt;section class&#x3D;&quot;min-h-screen bg-gray-50 px-4 py-8 md:px-8&quot;&gt;
+    &lt;div class&#x3D;&quot;mx-auto max-w-7xl&quot;&gt;
+
+        &lt;!-- Breadcrumb --&gt;
+        &lt;nav class&#x3D;&quot;mb-6 flex items-center gap-2 text-sm text-gray-500&quot;&gt;
+            &lt;a routerLink&#x3D;&quot;/home&quot; class&#x3D;&quot;transition-colors hover:text-green-600&quot;&gt;{{ &#x27;COMMON.HOME&#x27; | translate }}&lt;/a&gt;
+            &lt;i class&#x3D;&quot;fa-solid fa-chevron-right text-2xs rtl:rotate-180&quot;&gt;&lt;/i&gt;
+            &lt;a routerLink&#x3D;&quot;/brands&quot; class&#x3D;&quot;transition-colors hover:text-green-600&quot;&gt;{{ &#x27;BRANDS.TITLE&#x27; | translate }}&lt;/a&gt;
+            &lt;i class&#x3D;&quot;fa-solid fa-chevron-right text-2xs rtl:rotate-180&quot;&gt;&lt;/i&gt;
+            &lt;span class&#x3D;&quot;font-medium text-gray-800&quot;&gt;{{ brandData.name }}&lt;/span&gt;
+        &lt;/nav&gt;
+
+        &lt;!-- Brand hero --&gt;
+        &lt;div class&#x3D;&quot;relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm&quot;&gt;
+            &lt;div class&#x3D;&quot;absolute inset-x-0 top-0 h-24 bg-linear-to-r from-green-600 to-emerald-400 md:h-28&quot;&gt;&lt;/div&gt;
+
+            &lt;div
+                class&#x3D;&quot;relative flex flex-col items-center gap-6 px-6 pb-8 pt-12 text-center md:flex-row md:items-end md:px-10 md:pt-14 md:text-start&quot;&gt;
+                &lt;div
+                    class&#x3D;&quot;flex h-36 w-36 shrink-0 items-center justify-center rounded-2xl border-4 border-white bg-white p-4 shadow-lg&quot;&gt;
+                    &lt;img [src]&#x3D;&quot;brandData.image&quot; [alt]&#x3D;&quot;brandData.name&quot; class&#x3D;&quot;h-full w-full object-contain&quot;&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;grow md:pb-2&quot;&gt;
+                    &lt;h1 class&#x3D;&quot;text-3xl font-semibold text-gray-800 md:text-4xl&quot;&gt;{{ brandData.name }}&lt;/h1&gt;
+                    &lt;p class&#x3D;&quot;mt-1 text-sm text-gray-500&quot;&gt;{{ &#x27;BRAND_PRODUCTS.EXPLORE&#x27; | translate: { name:
+                        brandData.name } }}&lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;flex gap-3 md:pb-2&quot;&gt;
+                    &lt;div class&#x3D;&quot;rounded-xl bg-green-50 px-5 py-3 text-center&quot;&gt;
+                        &lt;p class&#x3D;&quot;text-2xl font-semibold text-green-700&quot;&gt;{{ brandProducts.length }}&lt;/p&gt;
+                        &lt;p class&#x3D;&quot;text-xs text-green-600&quot;&gt;{{ &#x27;PRODUCTS.TITLE&#x27; | translate }}&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Products section --&gt;
+        &lt;div class&#x3D;&quot;mt-10&quot;&gt;
+            &lt;div class&#x3D;&quot;mb-6 flex items-center justify-between&quot;&gt;
+                &lt;h2 class&#x3D;&quot;text-2xl font-semibold text-gray-800&quot;&gt;{{ &#x27;PRODUCTS.TITLE&#x27; | translate }}&lt;/h2&gt;
+            &lt;/div&gt;
+
+            @if (brandProducts.length &gt; 0) {
+            &lt;section class&#x3D;&quot;products&quot;&gt;
+                @if (successMessage) {
+                &lt;app-toast-success [successMessage]&#x3D;&quot;successMessage&quot;&gt;&lt;/app-toast-success&gt;
+                }
+                @if (errorMessage) {
+                &lt;app-toast-error [errorMessage]&#x3D;&quot;errorMessage&quot;&gt;&lt;/app-toast-error&gt;
+                }
+                &lt;div class&#x3D;&quot;grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5&quot;&gt;
+                    @for (pro of brandProducts.slice(0,12); track pro._id) {
+                    &lt;div class&#x3D;&quot;card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group&quot;&gt;
+                        @if (!pro.addedToWishlist) {
+                        &lt;button (click)&#x3D;&quot;addToWishlist(pro._id)&quot;
+                            class&#x3D;&quot;absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-500 hover:bg-red-500 hover:text-white&quot;&gt;
+                            &lt;i class&#x3D;&quot;fa-regular fa-heart&quot;&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                        }
+                        @else {
+                        &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;removeFromWishlist(pro._id)&quot;
+                            [attr.aria-label]&#x3D;&quot;&#x27;WISHLIST.REMOVE&#x27; | translate&quot;
+                            class&#x3D;&quot;absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-300 hover:bg-red-500 hover:text-white&quot;&gt;
+                            @if (removingId &#x3D;&#x3D;&#x3D; pro._id) {
+                            &lt;i class&#x3D;&quot;fas fa-spin fa-spinner&quot;&gt;&lt;/i&gt;
+                            } @else {
+                            &lt;i class&#x3D;&quot;fa-solid fa-heart&quot;&gt;&lt;/i&gt;
+                            }
+                        &lt;/button&gt;
+                        }
+                        &lt;div [routerLink]&#x3D;&quot;[&#x27;/productDetails&#x27;, pro._id]&quot;&gt;
+                            &lt;div class&#x3D;&quot;card-img&quot;&gt;
+                                &lt;img [src]&#x3D;&quot;pro.imageCover&quot; class&#x3D;&quot;w-full h-75 object-contain&quot; [alt]&#x3D;&quot;pro.title&quot; /&gt;
+                            &lt;/div&gt;
+                            &lt;div class&#x3D;&quot;card-body px-2 py-4&quot;&gt;
+                                &lt;h4 class&#x3D;&quot;main-text-color text-xs&quot;&gt; {{pro.category.name}} &lt;/h4&gt;
+                                &lt;h3 class&#x3D;&quot;font-medium&quot;&gt; {{pro.title | split: 2}} &lt;/h3&gt;
+                                &lt;div class&#x3D;&quot;flex justify-between items-center&quot;&gt;
+                                    &lt;span&gt;{{pro.price}} {{ &#x27;COMMON.EGP&#x27; | translate }}&lt;/span&gt;
+                                    &lt;div class&#x3D;&quot;flex items-center&quot;&gt;
+                                        &lt;i class&#x3D;&quot;fas fa-star text-yellow-300&quot;&gt;&lt;/i&gt;
+                                        &lt;span class&#x3D;&quot;text-gray-500&quot;&gt; {{pro.ratingsAverage}} &lt;/span&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;button [disabled]&#x3D;&quot;isLoading&quot; (click)&#x3D;&quot;addToCart(pro._id)&quot;
+                            class&#x3D;&quot;main-bg px-6 py-2 cursor-pointer rounded border text-white my-1 block w-[95%] mx-auto opacity-0 translate-y-[130%] transition-all duration-500 group-hover:translate-0  group-hover:opacity-100&quot;&gt;
+                            &lt;i class&#x3D;&quot;fa-solid fa-cart-plus me-1&quot;&gt;&lt;/i&gt;
+                            {{ &#x27;HOME.ADD_TO_CART&#x27; | translate }}
+                            @if (isLoading) {
+                            &lt;span&gt;&lt;i class&#x3D;&quot;fas fa-spin fa-spinner&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                            }
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                    }
+                &lt;/div&gt;
+            &lt;/section&gt;
+            } @else {
+            &lt;div
+                class&#x3D;&quot;flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-300 bg-white py-16 text-center&quot;&gt;
+                &lt;i class&#x3D;&quot;fa-solid fa-box-open text-5xl text-gray-300&quot;&gt;&lt;/i&gt;
+                &lt;h3 class&#x3D;&quot;mt-3 text-xl font-medium text-gray-800&quot;&gt;{{ &#x27;BRAND_PRODUCTS.NO_PRODUCTS&#x27; | translate }}&lt;/h3&gt;
+                &lt;p class&#x3D;&quot;text-sm text-gray-500&quot;&gt;{{ &#x27;BRAND_PRODUCTS.NO_PRODUCTS_DESC&#x27; | translate }}&lt;/p&gt;
+            &lt;/div&gt;
+            }
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./brand-products.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>@if (brandData) {<section class="min-h-screen bg-gray-50 px-4 py-8 md:px-8">    <div class="mx-auto max-w-7xl">        <!-- Breadcrumb -->        <nav class="mb-6 flex items-center gap-2 text-sm text-gray-500">            <a routerLink="/home" class="transition-colors hover:text-green-600">{{ \'COMMON.HOME\' | translate }}</a>            <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>            <a routerLink="/brands" class="transition-colors hover:text-green-600">{{ \'BRANDS.TITLE\' | translate }}</a>            <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>            <span class="font-medium text-gray-800">{{ brandData.name }}</span>        </nav>        <!-- Brand hero -->        <div class="relative overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">            <div class="absolute inset-x-0 top-0 h-24 bg-linear-to-r from-green-600 to-emerald-400 md:h-28"></div>            <div                class="relative flex flex-col items-center gap-6 px-6 pb-8 pt-12 text-center md:flex-row md:items-end md:px-10 md:pt-14 md:text-start">                <div                    class="flex h-36 w-36 shrink-0 items-center justify-center rounded-2xl border-4 border-white bg-white p-4 shadow-lg">                    <img [src]="brandData.image" [alt]="brandData.name" class="h-full w-full object-contain">                </div>                <div class="grow md:pb-2">                    <h1 class="text-3xl font-semibold text-gray-800 md:text-4xl">{{ brandData.name }}</h1>                    <p class="mt-1 text-sm text-gray-500">{{ \'BRAND_PRODUCTS.EXPLORE\' | translate: { name:                        brandData.name } }}</p>                </div>                <div class="flex gap-3 md:pb-2">                    <div class="rounded-xl bg-green-50 px-5 py-3 text-center">                        <p class="text-2xl font-semibold text-green-700">{{ brandProducts.length }}</p>                        <p class="text-xs text-green-600">{{ \'PRODUCTS.TITLE\' | translate }}</p>                    </div>                </div>            </div>        </div>        <!-- Products section -->        <div class="mt-10">            <div class="mb-6 flex items-center justify-between">                <h2 class="text-2xl font-semibold text-gray-800">{{ \'PRODUCTS.TITLE\' | translate }}</h2>            </div>            @if (brandProducts.length > 0) {            <section class="products">                @if (successMessage) {                <app-toast-success [successMessage]="successMessage"></app-toast-success>                }                @if (errorMessage) {                <app-toast-error [errorMessage]="errorMessage"></app-toast-error>                }                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">                    @for (pro of brandProducts.slice(0,12); track pro._id) {                    <div class="card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group">                        @if (!pro.addedToWishlist) {                        <button (click)="addToWishlist(pro._id)"                            class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-500 hover:bg-red-500 hover:text-white">                            <i class="fa-regular fa-heart"></i>                        </button>                        }                        @else {                        <button type="button" (click)="removeFromWishlist(pro._id)"                            [attr.aria-label]="\'WISHLIST.REMOVE\' | translate"                            class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-300 hover:bg-red-500 hover:text-white">                            @if (removingId === pro._id) {                            <i class="fas fa-spin fa-spinner"></i>                            } @else {                            <i class="fa-solid fa-heart"></i>                            }                        </button>                        }                        <div [routerLink]="[\'/productDetails\', pro._id]">                            <div class="card-img">                                <img [src]="pro.imageCover" class="w-full h-75 object-contain" [alt]="pro.title" />                            </div>                            <div class="card-body px-2 py-4">                                <h4 class="main-text-color text-xs"> {{pro.category.name}} </h4>                                <h3 class="font-medium"> {{pro.title | split: 2}} </h3>                                <div class="flex justify-between items-center">                                    <span>{{pro.price}} {{ \'COMMON.EGP\' | translate }}</span>                                    <div class="flex items-center">                                        <i class="fas fa-star text-yellow-300"></i>                                        <span class="text-gray-500"> {{pro.ratingsAverage}} </span>                                    </div>                                </div>                            </div>                        </div>                        <button [disabled]="isLoading" (click)="addToCart(pro._id)"                            class="main-bg px-6 py-2 cursor-pointer rounded border text-white my-1 block w-[95%] mx-auto opacity-0 translate-y-[130%] transition-all duration-500 group-hover:translate-0  group-hover:opacity-100">                            <i class="fa-solid fa-cart-plus me-1"></i>                            {{ \'HOME.ADD_TO_CART\' | translate }}                            @if (isLoading) {                            <span><i class="fas fa-spin fa-spinner"></i></span>                            }                        </button>                    </div>                    }                </div>            </section>            } @else {            <div                class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-300 bg-white py-16 text-center">                <i class="fa-solid fa-box-open text-5xl text-gray-300"></i>                <h3 class="mt-3 text-xl font-medium text-gray-800">{{ \'BRAND_PRODUCTS.NO_PRODUCTS\' | translate }}</h3>                <p class="text-sm text-gray-500">{{ \'BRAND_PRODUCTS.NO_PRODUCTS_DESC\' | translate }}</p>            </div>            }        </div>    </div></section>}</div>'
+    var COMPONENTS = [{'name': 'AllOrdersComponent', 'selector': 'app-all-orders'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'BrandProductsComponent', 'selector': 'app-brand-products'},{'name': 'BrandsComponent', 'selector': 'app-brands'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CategoriesComponent', 'selector': 'app-categories'},{'name': 'CategoryProductsComponent', 'selector': 'app-category-products'},{'name': 'CheckoutComponent', 'selector': 'app-checkout'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForgetPasswordComponent', 'selector': 'app-forget-password'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MainComponent', 'selector': 'app-main'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotfoundComponent', 'selector': 'app-notfound'},{'name': 'ProductDetailsComponent', 'selector': 'app-product-details'},{'name': 'ProductsComponent', 'selector': 'app-products'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'ToastErrorComponent', 'selector': 'app-toast-error'},{'name': 'ToastSuccessComponent', 'selector': 'app-toast-success'},{'name': 'WishlistComponent', 'selector': 'app-wishlist'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BrandProductsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BrandProductsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
