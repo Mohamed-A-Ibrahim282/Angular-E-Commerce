@@ -1,0 +1,18 @@
+<nav class="mb-6 flex items-center gap-2 text-sm text-gray-500">
+    <a routerLink="/home" class="transition-colors hover:text-green-600">{{ 'COMMON.HOME' | translate }}</a>
+    <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>
+    <a class="transition-colors">{{ 'CATEGORIES.TITLE' | translate }}</a>
+</nav>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    @for (cat of categories.slice(0,12); track $index) {
+    <div class="card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group">
+        <div class="card-img">
+            <img [src]="cat.image" class="w-full h-75 object-contain" [alt]="cat.name" />
+        </div>
+        <div class="card-body p-2">
+            <h3 class="font-medium"> {{cat.name}} </h3>
+        </div>
+    </div>
+    }
+</div>

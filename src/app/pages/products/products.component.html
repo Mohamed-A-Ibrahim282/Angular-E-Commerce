@@ -1,0 +1,59 @@
+@if (successMessage) {
+<app-toast-success [successMessage]="successMessage"></app-toast-success>
+}
+@if (errorMessage) {
+<app-toast-error [errorMessage]="errorMessage"></app-toast-error>
+}
+
+<nav class="mb-6 flex items-center gap-2 text-sm text-gray-500">
+    <a routerLink="/home" class="transition-colors hover:text-green-600">{{ 'COMMON.HOME' | translate }}</a>
+    <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>
+    <a class="transition-colors hover:text-green-600">{{ 'PRODUCTS.TITLE' | translate }}</a>
+</nav>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    @for (pro of products; track $index) {
+    <div class="card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group">
+        @if (!pro.addedToWishlist) {
+        <button (click)="addToWishlist(pro._id)"
+            class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-500 hover:bg-red-500 hover:text-white">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+        }
+        @else {
+        <button type="button" (click)="removeFromWishlist(pro._id)" [attr.aria-label]="'WISHLIST.REMOVE' | translate"
+            class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-300 hover:bg-red-500 hover:text-white">
+            @if (removingId === pro._id) {
+            <i class="fas fa-spin fa-spinner"></i>
+            } @else {
+            <i class="fa-solid fa-heart"></i>
+            }
+        </button>
+        }
+        <div [routerLink]="['/productDetails', pro._id]">
+            <div class="card-img">
+                <img [src]="pro.imageCover" class="w-full h-75 object-contain" [alt]="pro.title" />
+            </div>
+            <div class="card-body px-2 py-4">
+                <h4 class="main-text-color text-xs"> {{pro.category.name}} </h4>
+                <h3 class="font-medium"> {{pro.title | split: 3}} </h3>
+                <div class="flex justify-between items-center">
+                    <span>{{pro.price}} {{ 'COMMON.EGP' | translate }}</span>
+                    <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-300"></i>
+                        <span class="text-gray-500"> {{pro.ratingsAverage}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button [disabled]="isLoading" (click)="addToCart(pro._id)"
+            class="main-bg px-6 py-2 cursor-pointer rounded border text-white my-1 block w-[95%] mx-auto opacity-0 translate-y-[130%] transition-all duration-500 group-hover:translate-0  group-hover:opacity-100">
+            <i class="fa-solid fa-cart-plus me-1"></i>
+            {{ 'HOME.ADD_TO_CART' | translate }}
+            @if (isLoading) {
+            <span><i class="fas fa-spin fa-spinner"></i></span>
+            }
+        </button>
+    </div>
+    }
+</div>

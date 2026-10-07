@@ -1,0 +1,96 @@
+<section class="banner mb-10">
+    <div class="flex">
+        <div class="w-3/4">
+            <owl-carousel-o [options]="bannerSlideOptions">
+                @for (imgSrc of bannerImgSrc; track $index) {
+                <ng-template carouselSlide>
+                    <div class="card-img">
+                        <img [src]="imgSrc" class="w-full h-75" [alt]="('HOME.BANNER' | translate) + ' ' + $index" />
+                    </div>
+                </ng-template>
+                }
+            </owl-carousel-o>
+        </div>
+        <div class="w-1/4">
+            <img src="/images/grocery-banner.png" class="w-full h-37.5" [alt]="'HOME.GROCERY_BANNER_1' | translate">
+            <img src="/images/grocery-banner-2.jpeg" class="w-full h-37.5" [alt]="'HOME.GROCERY_BANNER_2' | translate">
+        </div>
+    </div>
+</section>
+
+<section class="categories mb-10">
+    <h2 class="font-bold text-2xl">{{ 'HOME.POPULAR_CATEGORIES' | translate }}</h2>
+    <owl-carousel-o [options]="categorySlideOptions">
+        @for (cat of categories; track cat._id) {
+        <ng-template carouselSlide>
+            <div class="p-3">
+                <div class="card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group">
+                    <div class="card-img">
+                        <img [src]="cat.image" class="w-full h-50 object-contain" [alt]="cat.name" />
+                    </div>
+                    <div class="card-body p-2">
+                        <h3 class="font-medium"> {{cat.name}} </h3>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        }
+    </owl-carousel-o>
+</section>
+
+<section class="products">
+    @if (successMessage) {
+    <app-toast-success [successMessage]="successMessage"></app-toast-success>
+    }
+    @if (errorMessage) {
+    <app-toast-error [errorMessage]="errorMessage"></app-toast-error>
+    }
+    <h2 class="font-bold text-2xl mb-4">{{ 'HOME.POPULAR_PRODUCTS' | translate }}</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        @for (pro of products.slice(0,12); track $index) {
+        <div class="card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group">
+            @if (!pro.addedToWishlist) {
+            <button (click)="addToWishlist(pro._id)"
+                class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-500 hover:bg-red-500 hover:text-white">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            }
+            @else {
+            <button type="button" (click)="removeFromWishlist(pro._id)"
+                [attr.aria-label]="'WISHLIST.REMOVE' | translate"
+                class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-300 hover:bg-red-500 hover:text-white">
+                @if (removingId === pro._id) {
+                <i class="fas fa-spin fa-spinner"></i>
+                } @else {
+                <i class="fa-solid fa-heart"></i>
+                }
+            </button>
+            }
+            <div [routerLink]="['/productDetails', pro._id]">
+                <div class="card-img">
+                    <img [src]="pro.imageCover" class="w-full h-75 object-contain" [alt]="pro.title" />
+                </div>
+                <div class="card-body px-2 py-4">
+                    <h4 class="main-text-color text-xs"> {{pro.category.name}} </h4>
+                    <h3 class="font-medium"> {{pro.title | split: 2}} </h3>
+                    <div class="flex justify-between items-center">
+                        <span>{{pro.price}} {{ 'COMMON.EGP' | translate }}</span>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-300"></i>
+                            <span class="text-gray-500"> {{pro.ratingsAverage}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="isLoading" (click)="addToCart(pro._id)"
+                class="main-bg px-6 py-2 cursor-pointer rounded border text-white my-1 block w-[95%] mx-auto opacity-0 translate-y-[130%] transition-all duration-500 group-hover:translate-0  group-hover:opacity-100">
+                <i class="fa-solid fa-cart-plus me-1"></i>
+                {{ 'HOME.ADD_TO_CART' | translate }}
+                @if (isLoading) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+        </div>
+        }
+    </div>
+</section>

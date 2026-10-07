@@ -1,0 +1,103 @@
+<section class="w-2/3 border border-gray-200 shadow shadow-gary-500 bg-gray-50 p-5 rounded mx-auto mt-5">
+    <h1 class="font-light text-3xl text-center uppercase main-text-color ">{{ 'CHECKOUT.TITLE' | translate }}</h1>
+
+    <form [formGroup]="orderForm">
+        <div class="mb-5">
+            @let detailsControl = orderForm.get('details');
+            <label for="details" class="block mb-1 text-sm capitalize font-medium text-black">{{ 'CHECKOUT.DETAILS' | translate }}</label>
+            <textarea id="details" formControlName="details"
+                class="bg-white border border-default-medium text-black text-base 
+            rounded-base focus:ring-brand focus:border-brand block w-full px-3.5 py-3 shadow-xs placeholder:text-gray-400" [placeholder]="'CHECKOUT.ENTER_DETAILS' | translate"
+                required></textarea>
+
+            @if (detailsControl?.errors && detailsControl?.touched) {
+            <div class="flex align-top p-4 my-4 text-sm text-fg-danger rounded-base bg-danger-soft border border-danger-subtle"
+                role="alert">
+                <svg class="w-4 h-4 me-2 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <div>
+                    <ul class="space-y-1 ps-1">
+                        @if (detailsControl?.getError("required")) {
+                        <li>{{ 'CHECKOUT.DETAILS_REQUIRED' | translate }}</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="mb-5">
+            @let phoneControl = orderForm.get('phone');
+            <label for="phone" class="block mb-1 text-sm capitalize font-medium text-black">{{ 'AUTH.PHONE' | translate }}</label>
+            <input type="tel" id="phone" formControlName="phone"
+                class="bg-white border border-default-medium text-black text-base 
+            rounded-base focus:ring-brand focus:border-brand block w-full px-3.5 py-3 shadow-xs placeholder:text-gray-400" [placeholder]="'AUTH.ENTER_PHONE' | translate" required />
+
+            @if (phoneControl?.errors && phoneControl?.touched) {
+            <div class="flex align-top p-4 my-4 text-sm text-fg-danger rounded-base bg-danger-soft border border-danger-subtle"
+                role="alert">
+                <svg class="w-4 h-4 me-2 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <div>
+                    <ul class="space-y-1 ps-1">
+                        @if (phoneControl?.getError("required")) {
+                        <li>{{ 'AUTH.PHONE_REQUIRED' | translate }}</li>
+                        }
+                        @else if (phoneControl?.getError("pattern")) {
+                        <li>{{ 'CHECKOUT.PHONE_INVALID' | translate }}</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="mb-5">
+            @let cityControl = orderForm.get('city');
+            <label for="city" class="block mb-1 text-sm capitalize font-medium text-black">{{ 'CHECKOUT.CITY' | translate }}</label>
+            <input type="text" id="city" formControlName="city"
+                class="bg-white border border-default-medium text-black text-base 
+            rounded-base focus:ring-brand focus:border-brand block w-full px-3.5 py-3 shadow-xs placeholder:text-gray-400" [placeholder]="'CHECKOUT.ENTER_CITY' | translate" required />
+
+            @if (cityControl?.errors && cityControl?.touched) {
+            <div class="flex align-top p-4 my-4 text-sm text-fg-danger rounded-base bg-danger-soft border border-danger-subtle"
+                role="alert">
+                <svg class="w-4 h-4 me-2 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <div>
+                    <ul class="space-y-1 ps-1">
+                        @if (cityControl?.getError("required")) {
+                        <li>{{ 'CHECKOUT.CITY_REQUIRED' | translate }}</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="flex gap-4">
+            <button [disabled]="orderForm.invalid" type="submit" (click)="checkoutOrderForm('cash')" class="main-btn">
+                {{ 'CHECKOUT.CASH_PAYMENT' | translate }}
+                @if (isLoadingCash) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+            <button [disabled]="orderForm.invalid" type="submit" (click)="checkoutOrderForm('online')"
+                class="bg-blue-600 text-white py-2 px-10 rounded cursor-pointer hover:bg-blue-800 transition-all duration-300">
+                {{ 'CHECKOUT.ONLINE_PAYMENT' | translate }}
+                @if (isLoadingOnline) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+            </button>
+        </div>
+    </form>
+</section>

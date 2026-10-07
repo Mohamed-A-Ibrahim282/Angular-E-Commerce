@@ -1,0 +1,74 @@
+<nav class="mb-6 flex items-center gap-2 text-sm text-gray-500">
+    <a routerLink="/home" class="transition-colors hover:text-green-600">{{ 'COMMON.HOME' | translate }}</a>
+    <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>
+    <a routerLink="/products" class="transition-colors hover:text-green-600">{{ 'PRODUCTS.TITLE' | translate }}</a>
+    <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>
+    <span class="font-medium text-gray-800">{{ (productDetails?.title ?? '') | split:2}}</span>
+</nav>
+
+@if (productDetails) {
+<div class="flex md:items-center flex-col md:flex-row gap-4">
+    <div class="md:w-1/4">
+        <owl-carousel-o [options]="productOptions">
+            @for (imgSrc of productDetails.images; track $index) {
+            <ng-template carouselSlide>
+                <div class="card-img">
+                    <img [src]="imgSrc" class="w-full" [alt]="('PRODUCT_DETAILS.IMAGE' | translate) + ' ' + $index" />
+                </div>
+            </ng-template>
+            }
+        </owl-carousel-o>
+    </div>
+    <div class="md:w-3/4 md:p-4 relative">
+        @if (!productDetails.addedToWishlist) {
+        <button (click)="addToWishlist(productDetails._id)"
+            class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-500 hover:bg-red-500 hover:text-white">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+        }
+        @else {
+        <button type="button" (click)="removeFromWishlist(productDetails._id)"
+            [attr.aria-label]="'WISHLIST.REMOVE' | translate"
+            class="absolute inset-e-3 top-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/90 text-red-500 shadow transition-all duration-300 hover:bg-red-500 hover:text-white">
+            @if (removingId === productDetails._id) {
+            <i class="fas fa-spin fa-spinner"></i>
+            } @else {
+            <i class="fa-solid fa-heart"></i>
+            }
+        </button>
+        }
+        <img [src]="productDetails.brand.image" [alt]="productDetails.brand.name"
+            class="h-20 rounded-full object-cover">
+        <p class="mb-1 main-text-color">{{productDetails.category.name}}</p>
+        <h2 class="mb-1 text-black font-medium text-xl">
+            {{ productDetails.title }}
+            <span class="text-sm" [class]="productDetails.quantity > 0 ? 'main-text-color' : 'text-red-600'">
+                [{{ (productDetails.quantity > 0 ? 'PRODUCT_DETAILS.IN_STOCK' : 'PRODUCT_DETAILS.OUT_OF_STOCK') |
+                translate }}] </span>
+        </h2>
+        <p class="mb-1 text-gray-500">{{ productDetails.description }}</p>
+        <div class="flex justify-between items-center my-5">
+            <span>{{productDetails.price}} {{ 'COMMON.EGP' | translate }}</span>
+            <div class="flex items-center">
+                <i class="fas fa-star text-yellow-300"></i>
+                <span class="text-gray-500"> {{productDetails.ratingsAverage}} </span>
+            </div>
+        </div>
+        <button [disabled]="isLoading" (click)="addToCart(productDetails._id)"
+            class="main-bg mt-5 px-6 py-2 cursor-pointer rounded border text-white w-full">
+            <i class="fa-solid fa-cart-plus me-1"></i>
+            {{ 'HOME.ADD_TO_CART' | translate }}
+            @if (isLoading) {
+            <span><i class="fas fa-spin fa-spinner"></i></span>
+            }
+        </button>
+    </div>
+</div>
+}
+
+@if (successMessage) {
+<app-toast-success [successMessage]="successMessage"></app-toast-success>
+}
+@if (errorMessage) {
+<app-toast-error [errorMessage]="errorMessage"></app-toast-error>
+}

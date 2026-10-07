@@ -1,0 +1,155 @@
+{
+    "NAVBAR": {
+        "HOME": "الرئيسية",
+        "PRODUCTS": "المنتجات",
+        "CATEGORIES": "الفئات",
+        "BRANDS": "العلامات التجارية",
+        "ORDERS": "الطلبات",
+        "LOGIN": "تسجيل الدخول",
+        "REGISTER": "إنشاء حساب",
+        "CART": "السلة",
+        "SIGN_OUT": "تسجيل الخروج",
+        "OPEN_MENU": "فتح القائمة الرئيسية"
+    },
+    "HOME": {
+        "BANNER": "بانر",
+        "GROCERY_BANNER_1": "بانر البقالة 1",
+        "GROCERY_BANNER_2": "بانر البقالة 2",
+        "POPULAR_CATEGORIES": "الأقسام الشائعة",
+        "POPULAR_PRODUCTS": "المنتجات الشائعة",
+        "ADD_TO_CART": "أضف إلى السلة"
+    },
+    "CATEGORIES": {
+        "TITLE": "الأقسام"
+    },
+    "BRANDS": {
+        "TITLE": "العلامات التجارية",
+        "TOP_BRANDS": "أفضل العلامات التجارية",
+        "SUBTITLE": "تسوّق من العلامات التجارية التي تثق بها",
+        "NO_BRANDS": "لا توجد علامات تجارية",
+        "CHECK_BACK": "يرجى المحاولة مرة أخرى لاحقاً."
+    },
+    "BRAND_PRODUCTS": {
+        "EXPLORE": "استكشف جميع منتجات {{name}}",
+        "NO_PRODUCTS": "لا توجد منتجات بعد",
+        "NO_PRODUCTS_DESC": "هذه العلامة التجارية ليس لديها منتجات حاليًا."
+    },
+    "ORDERS": {
+        "TITLE": "الطلبات",
+        "MY_ORDERS": "طلباتي",
+        "SUBTITLE": "تابع وراجع جميع طلباتك السابقة",
+        "ORDER": "طلب",
+        "ORDERS": "طلبات",
+        "PAID": "مدفوع",
+        "UNPAID": "غير مدفوع",
+        "DELIVERED": "تم التوصيل",
+        "PROCESSING": "قيد التجهيز",
+        "QTY": "الكمية",
+        "PAYMENT": "الدفع",
+        "PAYMENT_TYPE": {
+            "cash": "نقداً",
+            "card": "بطاقة"
+        },
+        "SHIPPING": "الشحن",
+        "TAX": "الضريبة",
+        "TOTAL": "الإجمالي",
+        "NO_ORDERS_ALT": "لا توجد طلبات",
+        "NO_ORDERS": "ليس لديك طلبات بعد",
+        "NO_ORDERS_DESC": "عند إتمام طلب سيظهر هنا.",
+        "GO_TO_PRODUCTS": "تصفح المنتجات"
+    },
+    "CART": {
+        "TITLE": "السلة",
+        "SHOPPING_CART": "سلة التسوق",
+        "TOTAL_CART_PRICE": "إجمالي السلة",
+        "REMOVE_ALL": "حذف الكل",
+        "REMOVE": "حذف",
+        "PRICE": "السعر",
+        "CHECKOUT": "إتمام الشراء",
+        "EMPTY_ALT": "السلة فارغة",
+        "EMPTY": "سلتك فارغة.",
+        "GO_TO_PRODUCTS": "تصفح المنتجات"
+    },
+    "PRODUCTS": {
+        "TITLE": "المنتجات"
+    },
+    "PRODUCT_DETAILS": {
+        "IMAGE": "صورة المنتج",
+        "IN_STOCK": "متوفر",
+        "OUT_OF_STOCK": "غير متوفر"
+    },
+    "FOOTER": {
+        "GET_APP": "حمّل تطبيق FreshCart",
+        "GET_APP_DESC": "سنرسل لك رابطًا، افتحه على هاتفك لتحميل التطبيق",
+        "EMAIL": "البريد الإلكتروني",
+        "SHARE_APP_LINK": "أرسل رابط التطبيق",
+        "PAYMENT_PARTNERS": "شركاء الدفع",
+        "GET_DELIVERIES": "اطلب التوصيل مع FreshCart"
+    },
+    "AUTH": {
+        "LOGIN": "تسجيل الدخول",
+        "EMAIL": "البريد الإلكتروني",
+        "PASSWORD": "كلمة المرور",
+        "ENTER_EMAIL": "أدخل بريدك الإلكتروني",
+        "ENTER_PASSWORD": "أدخل كلمة المرور",
+        "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
+        "EMAIL_INVALID": "أدخل بريدًا إلكترونيًا صحيحًا",
+        "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
+        "PASSWORD_MIN": "يجب ألا تقل عن 6 أحرف",
+        "LOGIN_SUCCESS": "تم تسجيل الدخول بنجاح!",
+        "FORGET_PASSWORD": "نسيت كلمة المرور",
+        "FORGET_PASSWORD_TITLE": "نسيت كلمة المرور",
+        "NO_USER_WITH_EMAIL": "لا يوجد مستخدم مسجّل بهذا البريد الإلكتروني",
+        "SEND_CODE": "إرسال رمز التحقق",
+        "VERIFY_RESET_CODE": "التحقق من رمز إعادة التعيين",
+        "RESET_CODE": "رمز إعادة التعيين",
+        "ENTER_CODE": "أدخل رمز التحقق",
+        "CODE_REQUIRED": "الرمز مطلوب",
+        "CODE_INVALID": "أدخل رمزًا صحيحًا",
+        "VERIFY_CODE": "تحقق من الرمز",
+        "RESET_PASSWORD": "إعادة تعيين كلمة المرور",
+        "NEW_PASSWORD": "كلمة المرور الجديدة",
+        "REGISTER_NOW": "سجّل الآن",
+        "REGISTER": "تسجيل",
+        "NAME": "الاسم",
+        "ENTER_NAME": "أدخل اسمك",
+        "NAME_REQUIRED": "الاسم مطلوب",
+        "NAME_MIN": "يجب ألا يقل الاسم عن 3 أحرف",
+        "NAME_MAX": "يجب ألا يزيد الاسم عن 20 حرفًا",
+        "REPASSWORD": "تأكيد كلمة المرور",
+        "ENTER_REPASSWORD": "أكّد كلمة المرور",
+        "PASSWORD_MISMATCH": "تأكيد كلمة المرور غير مطابق",
+        "PHONE": "رقم الهاتف",
+        "ENTER_PHONE": "أدخل رقم هاتفك",
+        "PHONE_REQUIRED": "رقم الهاتف مطلوب",
+        "PHONE_INVALID": "يُقبل أرقام الهواتف المصرية فقط",
+        "REGISTER_SUCCESS": "تم إنشاء الحساب بنجاح!"
+    },
+    "CHECKOUT": {
+        "TITLE": "نموذج إتمام الطلب",
+        "DETAILS": "التفاصيل",
+        "ENTER_DETAILS": "أدخل تفاصيل عنوانك",
+        "DETAILS_REQUIRED": "التفاصيل مطلوبة",
+        "PHONE_INVALID": "أدخل رقم هاتف صحيح",
+        "CITY": "المدينة",
+        "ENTER_CITY": "أدخل مدينتك",
+        "CITY_REQUIRED": "المدينة مطلوبة",
+        "CASH_PAYMENT": "الدفع نقدًا",
+        "ONLINE_PAYMENT": "الدفع أونلاين"
+    },
+    "WISHLIST": {
+        "TITLE": "المفضلة",
+        "MY_WISHLIST": "قائمة المفضلة",
+        "SUBTITLE": "المنتجات اللي حفظتها لوقت لاحق",
+        "ITEM": "منتج",
+        "ITEMS": "منتجات",
+        "REMOVE": "إزالة من المفضلة",
+        "EMPTY": "قائمة المفضلة فارغة",
+        "EMPTY_DESC": "اضغط على أيقونة القلب في أي منتج لحفظه هنا.",
+        "GO_TO_PRODUCTS": "تصفح المنتجات"
+    },
+    "COMMON": {
+        "EGP": "ج.م",
+        "HOME": "الرئيسية"
+    }
+}

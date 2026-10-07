@@ -1,0 +1,91 @@
+<nav class="mb-6 flex items-center gap-2 text-sm text-gray-500">
+    <a routerLink="/home" class="transition-colors hover:text-green-600">{{ 'COMMON.HOME' | translate }}</a>
+    <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>
+    <a class="transition-colors">{{ 'CART.TITLE' | translate }}</a>
+</nav>
+
+@if (cartItems.products) {
+<div class="p-5" [class.bg-gray-100]="cartItems.products.length > 0">
+    <h2 class="text-2xl font-medium">{{ 'CART.SHOPPING_CART' | translate }}</h2>
+    <div class="flex justify-between md:items-end mt-5 md:flex-row flex-col gap-3">
+        @if (cartItems.products.length > 0) {
+        <p class="main-text-color"> {{ 'CART.TOTAL_CART_PRICE' | translate }}: {{cartItems.totalCartPrice}} {{ 'COMMON.EGP' | translate }} </p>
+        <div>
+            <button (click)="removeAllCartItems()" class="px-3 py-2 w-fit cursor-pointer rounded bg-red-700 text-white">
+                <span><i class="fa-solid fa-trash-can"></i></span>
+                {{ 'CART.REMOVE_ALL' | translate }}
+                @if (isLoading && deletedItemId === "all") {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+                @if (deleteMessage) {
+                <app-toast-error [errorMessage]="deleteMessage"></app-toast-error>
+                }
+            </button>
+        </div>
+        }
+    </div>
+    @if (cartItems.products.length > 0) {
+    @for (item of cartItems.products; track item.product.id) {
+    <div class="flex mb-5 py-5 md:gap-5 border-b-2 border-gray-200 md:flex-row flex-col">
+        <div class="product-img cursor-pointer" [routerLink]="['/productDetails', item.product.id]">
+            <img [src]="item.product.imageCover" class="md:w-30" [alt]="item.product.title">
+            <h2 [routerLink]="['/productDetails', item.product.id]"
+                class="cursor-pointer mt-5 transition-all duration-200 hover:text-blue-600 hover:underline md:hidden">
+                {{item.product.title}}
+            </h2>
+        </div>
+        <div class="flex justify-between grow items-end">
+            <div class="product-info flex flex-col justify-between h-full pt-3 gap-5">
+                <div>
+                    <h2 [routerLink]="['/productDetails', item.product.id]"
+                        class="cursor-pointer transition-all duration-200 hover:text-blue-600 hover:underline hidden md:block">
+                        {{item.product.title}}
+                    </h2>
+                    <p class="main-text-color md:mt-1">{{ 'CART.PRICE' | translate }}: {{item.price }} {{ 'COMMON.EGP' | translate }}</p>
+                </div>
+                <button (click)="removeSpecificItem(item.product.id)"
+                    class="px-3 py-2 w-fit cursor-pointer rounded border border-green-500 hover:bg-red-700 hover:text-white hover:border-red-700 transition-all duration-400">
+                    <span><i class="fa-solid fa-trash-can"></i></span>
+                    {{ 'CART.REMOVE' | translate }}
+                    @if (isLoading && deletedItemId === item.product.id) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                    }
+                    @if (deleteMessage) {
+                    <app-toast-error [errorMessage]="deleteMessage"></app-toast-error>
+                    }
+                </button>
+            </div>
+            <div class="flex gap-4 items-center">
+                <button (click)="updateProductQuantity(item.product.id, (item.count + 1).toString())"
+                    class="border-2 flex items-center justify-center w-10 h-10 rounded cursor-pointer leading-none border-green-500">+</button>
+                <h3 class="text-xl"> {{item.count}} </h3>
+                <button (click)="updateProductQuantity(item.product.id, (item.count - 1).toString())"
+                    class="border-2 flex items-center justify-center w-10 h-10 rounded cursor-pointer leading-none border-green-500">-</button>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="flex justify-between md:items-center mt-5 p-5 bg-gray-300 rounded md:flex-row flex-col gap-5">
+        <h3 class="main-text-color text-xl m-0"> <span class="text-black">{{ 'CART.TOTAL_CART_PRICE' | translate }}:</span>
+            {{cartItems.totalCartPrice}} {{ 'COMMON.EGP' | translate }} </h3>
+
+        <button [routerLink]="['/checkout', cartId]"
+            class="px-3 py-2 cursor-pointer w-35 rounded bg-blue-700 text-white m-0">
+            {{ 'CART.CHECKOUT' | translate }}
+            @if (isLoading) {
+            <span><i class="fas fa-spin fa-spinner"></i></span>
+            }
+        </button>
+    </div>
+    }
+    @else {
+    <div class="flex justify-center items-center flex-col gap-1">
+        <img src="/images/empty-cart.jpg" [alt]="'CART.EMPTY_ALT' | translate">
+        <h3 class="text-xl mb-5">{{ 'CART.EMPTY' | translate }}</h3>
+        <a routerLink="/products" class="px-3 py-2 w-fit cursor-pointer rounded bg-green-700 text-white">
+            {{ 'CART.GO_TO_PRODUCTS' | translate }}
+        </a>
+    </div>
+    }
+</div>
+}

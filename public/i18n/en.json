@@ -1,0 +1,154 @@
+{
+    "NAVBAR": {
+        "HOME": "Home",
+        "PRODUCTS": "Products",
+        "CATEGORIES": "Categories",
+        "BRANDS": "Brands",
+        "ORDERS": "Orders",
+        "LOGIN": "Login",
+        "REGISTER": "Register",
+        "CART": "Cart",
+        "SIGN_OUT": "Sign Out"
+    },
+    "HOME": {
+        "BANNER": "Banner",
+        "GROCERY_BANNER_1": "Grocery banner 1",
+        "GROCERY_BANNER_2": "Grocery banner 2",
+        "POPULAR_CATEGORIES": "Popular Categories",
+        "POPULAR_PRODUCTS": "Popular Products",
+        "ADD_TO_CART": "Add to cart"
+    },
+    "CATEGORIES": {
+        "TITLE": "Categories"
+    },
+    "BRANDS": {
+        "TITLE": "Brands",
+        "TOP_BRANDS": "Top Brands",
+        "SUBTITLE": "Shop from the brands you trust",
+        "NO_BRANDS": "No brands found",
+        "CHECK_BACK": "Please check back later."
+    },
+    "BRAND_PRODUCTS": {
+        "EXPLORE": "Explore all products from {{name}}",
+        "NO_PRODUCTS": "No products yet",
+        "NO_PRODUCTS_DESC": "This brand doesn't have any products right now."
+    },
+    "ORDERS": {
+        "TITLE": "Orders",
+        "MY_ORDERS": "My Orders",
+        "SUBTITLE": "Track and review all your previous orders",
+        "ORDER": "Order",
+        "ORDERS": "Orders",
+        "PAID": "Paid",
+        "UNPAID": "Unpaid",
+        "DELIVERED": "Delivered",
+        "PROCESSING": "Processing",
+        "QTY": "Qty",
+        "PAYMENT": "Payment",
+        "PAYMENT_TYPE": {
+            "cash": "Cash",
+            "card": "Card"
+        },
+        "SHIPPING": "Shipping",
+        "TAX": "Tax",
+        "TOTAL": "Total",
+        "NO_ORDERS_ALT": "No orders",
+        "NO_ORDERS": "You have no orders yet",
+        "NO_ORDERS_DESC": "When you place an order, it will show up here.",
+        "GO_TO_PRODUCTS": "Go to Products"
+    },
+    "CART": {
+        "TITLE": "Cart",
+        "SHOPPING_CART": "Shopping Cart",
+        "TOTAL_CART_PRICE": "Total cart price",
+        "REMOVE_ALL": "Remove All",
+        "REMOVE": "Remove",
+        "PRICE": "Price",
+        "CHECKOUT": "Checkout",
+        "EMPTY_ALT": "Empty Cart",
+        "EMPTY": "Your cart is empty.",
+        "GO_TO_PRODUCTS": "Go to Products"
+    },
+    "PRODUCTS": {
+        "TITLE": "Products"
+    },
+    "PRODUCT_DETAILS": {
+        "IMAGE": "Product image",
+        "IN_STOCK": "In Stock",
+        "OUT_OF_STOCK": "Out of Stock"
+    },
+    "FOOTER": {
+        "GET_APP": "Get The FreshCart App",
+        "GET_APP_DESC": "We will send you a link, open it on your phone to download the app",
+        "EMAIL": "Email",
+        "SHARE_APP_LINK": "Share App Link",
+        "PAYMENT_PARTNERS": "Payment partners",
+        "GET_DELIVERIES": "Get deliveries with FreshCart"
+    },
+    "AUTH": {
+        "LOGIN": "Login",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "ENTER_EMAIL": "Enter your email",
+        "ENTER_PASSWORD": "Enter your password",
+        "EMAIL_REQUIRED": "Email is required",
+        "EMAIL_INVALID": "Enter a valid email",
+        "PASSWORD_REQUIRED": "Password is required",
+        "PASSWORD_MIN": "Must be at least 6 characters",
+        "LOGIN_SUCCESS": "Login successful!",
+        "FORGET_PASSWORD": "Forgot password",
+        "FORGET_PASSWORD_TITLE": "Forgot Password",
+        "NO_USER_WITH_EMAIL": "There is no user registered with this email address",
+        "SEND_CODE": "Send verification code",
+        "VERIFY_RESET_CODE": "Verify Reset Code",
+        "RESET_CODE": "Reset code",
+        "ENTER_CODE": "Enter verification code",
+        "CODE_REQUIRED": "Code is required",
+        "CODE_INVALID": "Enter a valid code",
+        "VERIFY_CODE": "Verify code",
+        "RESET_PASSWORD": "Reset Password",
+        "NEW_PASSWORD": "New password",
+        "REGISTER_NOW": "Register Now",
+        "REGISTER": "Register",
+        "NAME": "Name",
+        "ENTER_NAME": "Enter your name",
+        "NAME_REQUIRED": "Name is required",
+        "NAME_MIN": "Name must be at least 3 characters",
+        "NAME_MAX": "Name must be at most 20 characters",
+        "REPASSWORD": "Confirm password",
+        "ENTER_REPASSWORD": "Confirm your password",
+        "PASSWORD_MISMATCH": "Password confirmation is incorrect",
+        "PHONE": "Phone",
+        "ENTER_PHONE": "Enter your phone number",
+        "PHONE_REQUIRED": "Phone is required",
+        "PHONE_INVALID": "Only Egyptian phone numbers are accepted",
+        "REGISTER_SUCCESS": "Account created successfully!"
+    },
+    "CHECKOUT": {
+        "TITLE": "Checkout Order Form",
+        "DETAILS": "Details",
+        "ENTER_DETAILS": "Enter your address details",
+        "DETAILS_REQUIRED": "Details are required",
+        "PHONE_INVALID": "Enter a valid phone number",
+        "CITY": "City",
+        "ENTER_CITY": "Enter your city",
+        "CITY_REQUIRED": "City is required",
+        "CASH_PAYMENT": "Cash Payment",
+        "ONLINE_PAYMENT": "Online Payment"
+    },
+    "WISHLIST": {
+        "TITLE": "Wishlist",
+        "MY_WISHLIST": "My Wishlist",
+        "SUBTITLE": "Products you saved for later",
+        "ITEM": "Item",
+        "ITEMS": "Items",
+        "REMOVE": "Remove from wishlist",
+        "EMPTY": "Your wishlist is empty",
+        "EMPTY_DESC": "Tap the heart icon on any product to save it here.",
+        "GO_TO_PRODUCTS": "Browse Products"
+    },
+    "COMMON": {
+        "EGP": "EGP",
+        "HOME": "Home"
+    }
+}

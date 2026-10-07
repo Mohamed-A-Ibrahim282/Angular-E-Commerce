@@ -1,0 +1,126 @@
+<nav class="mb-6 flex items-center gap-2 text-sm text-gray-500">
+    <a routerLink="/home" class="transition-colors hover:text-green-600">{{ 'COMMON.HOME' | translate }}</a>
+    <i class="fa-solid fa-chevron-right text-2xs rtl:rotate-180"></i>
+    <a class="transition-colors">{{ 'ORDERS.TITLE' | translate }}</a>
+</nav>
+
+@if (allOrders) {
+<section class="min-h-screen bg-gray-50 px-4 py-8 md:px-8">
+    <div class="mx-auto max-w-5xl">
+
+        <!-- Header -->
+        <div class="mb-8 flex items-center justify-between">
+            <div>
+                <h2 class="text-3xl font-semibold text-gray-800">{{ 'ORDERS.MY_ORDERS' | translate }}</h2>
+                <p class="mt-1 text-sm text-gray-500">{{ 'ORDERS.SUBTITLE' | translate }}</p>
+            </div>
+            @if (allOrders.length > 0) {
+            <span class="rounded-full bg-green-100 px-4 py-1.5 text-sm font-medium text-green-700">
+                {{ allOrders.length }} {{ (allOrders.length === 1 ? 'ORDERS.ORDER' : 'ORDERS.ORDERS') | translate }}
+            </span>
+            }
+        </div>
+
+        @if (allOrders.length > 0) {
+        <div class="flex flex-col gap-6">
+            @for (order of allOrders; track order._id) {
+            <article
+                class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md">
+
+                <!-- Card header -->
+                <div
+                    class="flex flex-col gap-3 border-b border-gray-100 bg-gray-50/70 px-5 py-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <p class="text-xs uppercase tracking-wide text-gray-400">{{ 'ORDERS.ORDER' | translate }}</p>
+                        <h3 class="text-lg font-semibold text-gray-800">#{{ order.id }}</h3>
+                        <p class="text-xs text-gray-500">{{ order.createdAt | date: 'dd MMM yyyy, hh:mm a' }}</p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
+                            [class]="order.isPaid ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'">
+                            <i class="fa-solid" [class]="order.isPaid ? 'fa-circle-check' : 'fa-clock'"></i>
+                            {{ (order.isPaid ? 'ORDERS.PAID' : 'ORDERS.UNPAID') | translate }}
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium"
+                            [class]="order.isDelivered ? 'bg-blue-100 text-blue-700' : 'bg-gray-200 text-gray-600'">
+                            <i class="fa-solid" [class]="order.isDelivered ? 'fa-truck-fast' : 'fa-box'"></i>
+                            {{ (order.isDelivered ? 'ORDERS.DELIVERED' : 'ORDERS.PROCESSING') | translate }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Items -->
+                <div class="grid gap-4 px-5 py-5 sm:grid-cols-2">
+                    @for (item of order.cartItems; track item._id) {
+                    <div class="flex items-center gap-4 rounded-xl border border-gray-100 p-3">
+                        <img [src]="item.product.imageCover" [alt]="item.product.title"
+                            class="h-20 w-20 shrink-0 rounded-lg object-cover bg-gray-100">
+                        <div class="min-w-0 grow">
+                            <h4 class="line-clamp-2 text-sm font-medium text-gray-800">{{ item.product.title }}</h4>
+                            <p class="mt-1 text-xs text-gray-500">{{ item.product.category.name }}</p>
+                            <div class="mt-2 flex items-center justify-between text-sm">
+                                <span class="text-gray-500">{{ 'ORDERS.QTY' | translate }}: {{ item.count }}</span>
+                                <span class="font-semibold text-green-600">{{ item.price }} {{ 'COMMON.EGP' | translate }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <!-- Footer -->
+                <div class="grid gap-5 border-t border-gray-100 px-5 py-5 md:grid-cols-2">
+
+                    <!-- Payment & shipping -->
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-credit-card w-4 text-gray-400"></i>
+                            {{ 'ORDERS.PAYMENT' | translate }}:
+                            <span class="font-medium capitalize text-gray-800">{{ ('ORDERS.PAYMENT_TYPE.' + order.paymentMethodType) | translate }}</span>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot w-4 text-gray-400"></i>
+                            <span class="font-medium text-gray-800">{{ order.shippingAddress.city }}</span>
+                            <span class="truncate">- {{ order.shippingAddress.details }}</span>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone w-4 text-gray-400"></i>
+                            {{ order.shippingAddress.phone }}
+                        </p>
+                    </div>
+
+                    <!-- Price summary -->
+                    <div class="space-y-1.5 rounded-xl bg-gray-50 p-4 text-sm">
+                        <div class="flex justify-between text-gray-500">
+                            <span>{{ 'ORDERS.SHIPPING' | translate }}</span>
+                            <span>{{ order.shippingPrice }} {{ 'COMMON.EGP' | translate }}</span>
+                        </div>
+                        <div class="flex justify-between text-gray-500">
+                            <span>{{ 'ORDERS.TAX' | translate }}</span>
+                            <span>{{ order.taxPrice }} {{ 'COMMON.EGP' | translate }}</span>
+                        </div>
+                        <div class="flex justify-between border-t border-gray-200 pt-2 text-base font-semibold">
+                            <span class="text-gray-800">{{ 'ORDERS.TOTAL' | translate }}</span>
+                            <span class="text-green-600">{{ order.totalOrderPrice }} {{ 'COMMON.EGP' | translate }}</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            }
+        </div>
+        } @else {
+        <!-- Empty state -->
+        <div
+            class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-300 bg-white py-16 text-center">
+            <img src="/images/empty-cart.jpg" [alt]="'ORDERS.NO_ORDERS_ALT' | translate" class="w-56">
+            <h3 class="text-xl font-medium text-gray-800">{{ 'ORDERS.NO_ORDERS' | translate }}</h3>
+            <p class="mb-4 text-sm text-gray-500">{{ 'ORDERS.NO_ORDERS_DESC' | translate }}</p>
+            <a routerLink="/products"
+                class="rounded-lg bg-green-700 px-5 py-2.5 text-white transition-colors hover:bg-green-800">
+                {{ 'ORDERS.GO_TO_PRODUCTS' | translate }}
+            </a>
+        </div>
+        }
+    </div>
+</section>
+}

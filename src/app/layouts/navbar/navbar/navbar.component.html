@@ -1,0 +1,109 @@
+<nav class="bg-gray-100 fixed w-full z-20 top-0 inset-s-0 border-b border-default">
+    <div class="flex flex-wrap items-center justify-between mx-auto py-4 px-5">
+        <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/images/freshcart-logo.svg" alt="">
+        </a>
+        <button data-collapse-toggle="navbar-default" type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+            </svg>
+        </button>
+        <div class="hidden w-full md:flex md:w-auto grow" id="navbar-default">
+            <ul
+                class="md:ms-5 capitalize flex flex-col p-4 md:p-0 mt-4 border rounded-base md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0">
+                @if (isLogin()) {
+
+                <li>
+                    <a routerLink="/home" routerLinkActive="main-bg text-white fw-bold"
+                        class="block text-gray-500 py-2 px-3 rounded" aria-current="page">
+                        {{ 'NAVBAR.HOME' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/products" routerLinkActive="main-bg text-white fw-bold"
+                        class="block text-gray-500 py-2 px-3 rounded" aria-current="page">
+                        {{ 'NAVBAR.PRODUCTS' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/categories" routerLinkActive="main-bg text-white fw-bold"
+                        class="block text-gray-500 py-2 px-3 rounded" aria-current="page">
+                        {{ 'NAVBAR.CATEGORIES' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/brands" routerLinkActive="main-bg text-white fw-bold"
+                        class="block text-gray-500 py-2 px-3 rounded" aria-current="page">
+                        {{ 'NAVBAR.BRANDS' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/allorders" routerLinkActive="main-bg text-white fw-bold"
+                        class="block text-gray-500 py-2 px-3 rounded" aria-current="page">
+                        {{ 'NAVBAR.ORDERS' | translate }}
+                    </a>
+                </li>
+                }
+            </ul>
+
+            <ul
+                class="ms-auto capitalize flex flex-col p-4 md:p-0 mt-4 border rounded-base md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0 md:border-0">
+                @if (checkLang === 'ar') {
+                <li>
+                    <a role="button" (click)="changeCurrentLang('en')" class="flex gap-1 py-2 rounded cursor-pointer"
+                        aria-current="page">
+                        <img src="/images/en-lang.svg" alt="en"> EN
+                    </a>
+                </li>
+                }
+                @else if (checkLang === 'en') {
+                <li>
+                    <a role="button" (click)="changeCurrentLang('ar')" class="flex gap-1 py-2 rounded cursor-pointer"
+                        aria-current="page">
+                        <img src="/images/eg-lang.svg" alt="en"> AR
+                    </a>
+                </li>
+                }
+
+                @if (!isLogin()) {
+                <li>
+                    <a routerLink="/login" routerLinkActive="main-bg text-white fw-bold"
+                        class="block text-gray-500 py-2 px-3 rounded" aria-current="page">
+                        {{ 'NAVBAR.LOGIN' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/register" routerLinkActive="main-bg text-white fw-bold"
+                        class="block text-gray-500 py-2 px-3 rounded" aria-current="page">
+                        {{ 'NAVBAR.REGISTER' | translate }}
+                    </a>
+                </li>
+                } @else {
+                <li>
+                    <a routerLink="/wishlist" routerLinkActive="main-bg text-white fw-bold" class="block py-2 px-3 rounded"
+                        aria-current="page">
+                        <i class="fa-solid fa-heart"></i>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/cart" routerLinkActive="main-bg text-white fw-bold" class="block py-2 px-3 rounded"
+                        aria-current="page">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <!-- <span> {{cartCount}} </span> -->
+                    </a>
+                </li>
+                <li>
+                    <a role="button" (click)="authService.signOut()"
+                        class="block text-gray-500 py-2 px-3 rounded cursor-pointer" aria-current="page">
+                        {{'NAVBAR.SIGN_OUT' | translate }}
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
