@@ -20,6 +20,7 @@ export const routes: Routes = [
             { path: 'products', loadComponent: () => import('./pages/products/products.component').then((c) => c.ProductsComponent), title: 'Products' },
             { path: 'cart', loadComponent: () => import('./pages/cart/cart.component').then((c) => c.CartComponent), title: 'Cart' },
             { path: 'categories', loadComponent: () => import('./pages/categories/categories.component').then((c) => c.CategoriesComponent), title: 'Categories' },
+            { path: 'category/:id', loadComponent: () => import('./pages/category-products/category-products.component').then((c) => c.CategoryProductsComponent), title: 'Category products' },
             { path: 'productDetails/:id', loadComponent: () => import('./pages/product-details/product-details.component').then((c) => c.ProductDetailsComponent), title: 'Product details' },
             { path: 'brands', loadComponent: () => import('./pages/brands/brands.component').then((c) => c.BrandsComponent), title: 'Brands' },
             { path: 'brand-products/:id', loadComponent: () => import('./pages/brand-products/brand-products.component').then((c) => c.BrandProductsComponent), title: 'Brand products' },

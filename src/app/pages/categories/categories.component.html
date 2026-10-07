@@ -6,7 +6,8 @@
 
 <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     @for (cat of categories.slice(0,12); track $index) {
-    <div class="card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group">
+    <div [routerLink]="['/category', cat._id]"
+        class="card main-border rounded-md overflow-hidden shadow relative px-4 pb-2 group">
         <div class="card-img">
             <img [src]="cat.image" class="w-full h-75 object-contain" [alt]="cat.name" />
         </div>
