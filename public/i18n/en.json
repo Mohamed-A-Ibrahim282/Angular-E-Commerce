@@ -147,6 +147,11 @@
         "EMPTY_DESC": "Tap the heart icon on any product to save it here.",
         "GO_TO_PRODUCTS": "Browse Products"
     },
+    "CATEGORY_PRODUCTS": {
+        "EXPLORE": "Explore all products in {{name}}",
+        "NO_PRODUCTS": "No products yet",
+        "NO_PRODUCTS_DESC": "This category doesn't have any products right now."
+    },
     "COMMON": {
         "EGP": "EGP",
         "HOME": "Home"

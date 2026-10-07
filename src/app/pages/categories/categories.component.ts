@@ -16,13 +16,13 @@ export class CategoriesComponent implements OnInit {
 
   categories: ICategories[] = []
 
+  ngOnInit(): void {
+    this.allCategories()
+  }
+
   allCategories(): void {
     this.categoriesService.getAllCategories().subscribe({
       next: (res) => this.categories = res.data,
     })
-  }
-
-  ngOnInit(): void {
-    this.allCategories()
   }
 }
