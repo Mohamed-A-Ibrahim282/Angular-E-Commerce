@@ -5,7 +5,7 @@
                 @for (imgSrc of bannerImgSrc; track $index) {
                 <ng-template carouselSlide>
                     <div class="card-img">
-                        <img [src]="imgSrc" class="w-full h-75" [alt]="('HOME.BANNER' | translate) + ' ' + $index" />
+                        <img [src]="imgSrc" class="w-full h-50 md:h-75" [alt]="('HOME.BANNER' | translate) + ' ' + $index" />
                     </div>
                 </ng-template>
                 }
