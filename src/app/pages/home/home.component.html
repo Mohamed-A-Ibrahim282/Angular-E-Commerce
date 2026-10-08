@@ -1,6 +1,6 @@
 <section class="banner mb-10">
     <div class="flex">
-        <div class="w-3/4">
+        <div class="md:w-3/4 w-full">
             <owl-carousel-o [options]="bannerSlideOptions">
                 @for (imgSrc of bannerImgSrc; track $index) {
                 <ng-template carouselSlide>
@@ -11,7 +11,7 @@
                 }
             </owl-carousel-o>
         </div>
-        <div class="w-1/4">
+        <div class="w-1/4 hidden md:block">
             <img src="/images/grocery-banner.png" class="w-full h-37.5" [alt]="'HOME.GROCERY_BANNER_1' | translate">
             <img src="/images/grocery-banner-2.jpeg" class="w-full h-37.5" [alt]="'HOME.GROCERY_BANNER_2' | translate">
         </div>
