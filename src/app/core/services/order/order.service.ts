@@ -3,6 +3,7 @@ import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environments } from '../../environments/environments';
 import { isPlatformBrowser } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ export class OrderService {
 
   constructor(private httpClient: HttpClient) { }
   private readonly platformId = inject(PLATFORM_ID)
+  private readonly cookieService = inject(CookieService)
 
-  uerToken = isPlatformBrowser(this.platformId) ? localStorage.getItem("userToken") : null
+  uerToken = isPlatformBrowser(this.platformId) ? this.cookieService.get("myToken") : null;
 
   createCashOrderFromCart(cartId: string, data: any): Observable<any> {
     return this.httpClient.post(`${environments.baseUrl}/api/v1/orders/${cartId}`,
