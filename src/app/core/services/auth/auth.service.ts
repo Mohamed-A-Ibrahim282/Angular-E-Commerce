@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environments } from '../../environments/environments';
 import { JwtDecodeOptions } from '../../../../../node_modules/jwt-decode/build/esm/index.d';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   private readonly router = inject(Router)
+  private readonly cookieService = inject(CookieService)
 
   sendRegisterData(data: object): Observable<any> {
     return this.httpClient.post(`${environments.baseUrl}/api/v1/auth/signup`, data)
@@ -23,8 +25,8 @@ export class AuthService {
   }
 
   signOut(): void {
-    localStorage.removeItem("userToken");
-    this.router.navigate(['/login'])
+    this.cookieService.delete("myToken");
+    this.router.navigate(['/login']);
   }
 
   setForgetPassword(data: object): Observable<any> {

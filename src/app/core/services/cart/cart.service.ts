@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { environments } from '../../environments/environments';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ export class CartService {
 
   private readonly httpClient = inject(HttpClient)
   private readonly platformId = inject(PLATFORM_ID)
+  private readonly cookieService = inject(CookieService)
 
-  userToken = isPlatformBrowser(this.platformId) ? localStorage.getItem("userToken") : ''
+  userToken = isPlatformBrowser(this.platformId) ? this.cookieService.get("myToken") : null;
 
 
   addProductToCart(id: string): Observable<any> {

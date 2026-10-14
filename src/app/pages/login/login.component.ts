@@ -3,10 +3,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule, RouterLink, TranslatePipe],
+  providers: [CookieService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -14,6 +16,7 @@ export class LoginComponent {
 
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
+  private readonly cookieService = inject(CookieService)
 
 
   isLoading: boolean = false;
@@ -34,7 +37,7 @@ export class LoginComponent {
           this.isLoading = false;
           if (res.message === "success") {
             this.sucsessMesage = res.message;
-            localStorage.setItem("userToken", res.token)
+            this.cookieService.set("myToken",res.token)
           }
           setTimeout(() => {
             this.router.navigate(['/home'])

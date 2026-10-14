@@ -4,10 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-forget-password',
   imports: [ReactiveFormsModule, TranslatePipe],
+  providers: [CookieService],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss'
 })
@@ -17,6 +19,7 @@ export class ForgetPasswordComponent {
   private readonly formBuilder = inject(FormBuilder)
   private readonly platformId = inject(PLATFORM_ID)
   private readonly router = inject(Router)
+  private readonly cookieService = inject(CookieService)
 
 
   step: number = 1;
@@ -99,7 +102,7 @@ export class ForgetPasswordComponent {
           this.isLoading = false;
 
           if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem("userToken", res.token)
+            this.cookieService.set("myToken", res.token);
           }
 
           setTimeout(() => {
